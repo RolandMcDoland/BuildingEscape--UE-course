@@ -22,6 +22,7 @@ protected:
 	virtual void BeginPlay() override;
 
 	void OpenDoor();
+	void CloseDoor();
 
 public:	
 	// Called every frame
@@ -35,6 +36,11 @@ private:
 		ATriggerVolume* PressurePlate;
 
 	UPROPERTY(EditAnywhere)
-		AActor* ActorThatOpens;
+		float DoorCloseDelay = 1.0f;
+
+	float LastDoorOpenTime;
+
+	AActor* ActorThatOpens;
+	AActor *Owner; //The owning door
 	
 };
