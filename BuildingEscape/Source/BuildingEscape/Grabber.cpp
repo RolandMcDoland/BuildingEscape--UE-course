@@ -24,6 +24,16 @@ void UGrabber::BeginPlay()
 
 	UE_LOG(LogTemp, Warning, TEXT("Grabber reporting for duty!"));
 	
+	//Look for attached Physics Handle
+	PhysicsHandle = GetOwner()->FindComponentByClass<UPhysicsHandleComponent>();
+	if (PhysicsHandle)
+	{
+		//Physics Handle is found
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("Physics Handle not found on %s"),*(GetOwner()->GetName()));
+	}
 }
 
 
@@ -36,9 +46,9 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 	FRotator PlayerViewPointRotation = FRotator(0.0f, 0.0f, 0.0f);
 	FVector PlayerViewPointLocation = FVector(0.0f, 0.0f, 0.0f);
 
-	//Get player view point and log it out to Unreal output log
+	//Get player view point and log it out to Unreal output log (commented out)
 	GetWorld()->GetFirstPlayerController()->GetPlayerViewPoint(OUT PlayerViewPointLocation,OUT PlayerViewPointRotation);
-	UE_LOG(LogTemp, Warning, TEXT("Location: %s, Rotation: %s"),*PlayerViewPointLocation.ToString(),*PlayerViewPointRotation.ToString());
+	//UE_LOG(LogTemp, Warning, TEXT("Location: %s, Rotation: %s"),*PlayerViewPointLocation.ToString(),*PlayerViewPointRotation.ToString());
 
 	//Calculate the end of a debug line
 	FVector LineTraceEnd = PlayerViewPointLocation + PlayerViewPointRotation.Vector()*Reach;
