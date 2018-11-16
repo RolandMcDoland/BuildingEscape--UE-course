@@ -40,7 +40,8 @@ private:
 
 	float LastDoorOpenTime;
 
-	AActor* ActorThatOpens;
 	AActor *Owner; //The owning door
 	
+	//Calculates the total mass of actors standing on a pressure plate
+	float GetTotalMassOfActorsOnPlate();
 };
