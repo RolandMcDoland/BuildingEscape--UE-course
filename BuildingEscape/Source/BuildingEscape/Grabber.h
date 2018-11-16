@@ -34,6 +34,8 @@ private:
 	
 	UInputComponent *InputComponent = nullptr;
 
+	FVector PlayerViewPointLocation = FVector(0.0f, 0.0f, 0.0f);
+
 	//Ray-cast and grab what's in reach
 	void Grab();
 
@@ -47,5 +49,8 @@ private:
 	void SetupInputComponent();
 
 	//Return hit for first physics body in reach
-	FHitResult GetFirstPhysicsBodyInReach() const;
+	FHitResult GetFirstPhysicsBodyInReach();
+
+	//Calculate the end of a line trace
+	FVector GetLineTraceEnd();
 };
